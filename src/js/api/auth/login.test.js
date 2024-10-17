@@ -5,16 +5,7 @@ jest.mock('../../storage/save.js', () => ({
   save: jest.fn(),
 }));
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () =>
-      Promise.resolve({
-        accessToken: 'token',
-        user: 'OleBob',
-      }),
-  }),
-);
+global.fetch = jest.fn();
 
 describe('login function', () => {
   beforeEach(() => {
@@ -22,7 +13,18 @@ describe('login function', () => {
     save.mockClear();
   });
 
-  it('stores a token', async () => {
+  it('stores a token when logging in', async () => {
+    fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            accessToken: 'token',
+            user: 'OleBob',
+          }),
+      }),
+    );
+
     const email = 'test@stud.noroff.no';
     const password = 'noroff1234';
     const accessToken = 'token';
