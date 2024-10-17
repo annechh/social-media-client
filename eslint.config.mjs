@@ -34,7 +34,7 @@ export default [
   },
 
   {
-    files: ['**/*.cy.js'],
+    files: ['**/*.cy.js', 'cypress.config.js'],
     languageOptions: {
       globals: {
         ...globals.cypress,
