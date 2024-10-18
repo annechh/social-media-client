@@ -9,6 +9,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.jest,
       },
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -40,12 +41,6 @@ export default [
         ...globals.cypress,
         cy: 'readonly',
         Cypress: 'readonly',
-        context: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        it: 'readonly',
-        describe: 'readonly',
-        expect: 'readonly',
       },
     },
     plugins: {
