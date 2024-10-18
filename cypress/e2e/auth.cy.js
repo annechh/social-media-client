@@ -13,6 +13,17 @@ describe('Authentication', () => {
     cy.get('#loginForm').find('input[name=password]').type(password);
     cy.get('#loginForm').find('button[type=submit]').click();
   });
+
+  it('Logs out the user', () => {
+    cy.get('#registerForm').find('button[data-auth=login').click();
+    cy.get('#loginForm').should('be.visible');
+    cy.wait(500);
+
+    cy.get('#loginForm').find('input[name=email]').type(email);
+    cy.get('#loginForm').find('input[name=password]').type(password);
+    cy.get('#loginForm').find('button[type=submit]').click();
+    cy.get('button[data-auth=logout]').click();
+  });
 });
 
 const user = 'testUser1234';
