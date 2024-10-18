@@ -34,10 +34,18 @@ export default [
   },
 
   {
-    files: ['**/*.cy.js', 'cypress.config.js'],
+    files: ['**/*.cy.js', 'cypress.config.js', '**/*/commands.js'],
     languageOptions: {
       globals: {
         ...globals.cypress,
+        cy: 'readonly',
+        Cypress: 'readonly',
+        context: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        it: 'readonly',
+        describe: 'readonly',
+        expect: 'readonly',
       },
     },
     plugins: {
