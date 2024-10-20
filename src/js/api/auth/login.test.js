@@ -13,27 +13,28 @@ describe('login function', () => {
     save.mockClear();
   });
 
+  const email = 'test@stud.noroff.no';
+  const password = 'noroff1234';
+  const wrongPassword = 'wrongPassword';
+  const accessToken = 'token';
+  const user = 'OleBob';
+
   it('stores a token when logging in', async () => {
     fetch.mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
         json: () =>
           Promise.resolve({
-            accessToken: 'token',
-            user: 'OleBob',
+            accessToken: accessToken,
+            user: user,
           }),
       }),
     );
 
-    const email = 'test@stud.noroff.no';
-    const password = 'noroff1234';
-    const accessToken = 'token';
-    const user = { user: 'OleBob' };
-
     await login(email, password);
 
     expect(save).toHaveBeenCalledWith('token', accessToken);
-    expect(save).toHaveBeenCalledWith('profile', user);
+    expect(save).toHaveBeenCalledWith('profile', { user: user });
   });
 
   it('fails to store token', async () => {
@@ -44,10 +45,7 @@ describe('login function', () => {
       }),
     );
 
-    const email = 'test@stud.noroff.no';
-    const password = 'wrongPassword';
-
-    await expect(login(email, password)).rejects.toThrow('Bad request');
+    await expect(login(email, wrongPassword)).rejects.toThrow('Bad request');
 
     expect(save).not.toHaveBeenCalled();
   });
