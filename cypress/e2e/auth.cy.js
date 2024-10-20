@@ -1,7 +1,6 @@
 describe('Authentication', () => {
   beforeEach(() => {
-    cy.visit('/');
-    cy.wait(500);
+    cy.visitHome();
   });
 
   it('Successfully log in user with valid credentials', () => {

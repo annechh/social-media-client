@@ -10,6 +10,8 @@ export default [
         ...globals.browser,
         ...globals.node,
         ...globals.jest,
+        cy: 'readonly',
+        Cypress: 'readonly',
       },
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -35,12 +37,10 @@ export default [
   },
 
   {
-    files: ['**/*.cy.js', 'cypress.config.js', '**/*/commands.js'],
+    files: ['**/*.cy.js', 'cypress.config.js'],
     languageOptions: {
       globals: {
         ...globals.cypress,
-        cy: 'readonly',
-        Cypress: 'readonly',
       },
     },
     plugins: {

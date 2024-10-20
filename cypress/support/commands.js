@@ -23,12 +23,6 @@ Cypress.Commands.add('loginInvalidUser', () => {
   cy.get('#loginForm').find('input[name=password]').type(password);
 });
 
-Cypress.Commands.add('showLogoutButton', () => {
-  cy.get('#registerForm').find('button[data-auth=login').click();
-  cy.get('#loginForm').should('be.visible');
-  cy.wait(500);
-});
-
 Cypress.Commands.add('clickLoginButton', () => {
   cy.get('#loginForm').find('button[type=submit]').click();
 });
